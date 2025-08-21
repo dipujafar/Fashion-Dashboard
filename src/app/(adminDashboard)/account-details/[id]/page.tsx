@@ -1,10 +1,9 @@
-import React from 'react'
-import UserProfileCard from './_components/UserProfileCard'
+import UserProfileContainer from './_components/UserProfileContainer'
 
 export default function AccountDetailsPage() {
   return (
     <div>
-        <UserProfileCard/>
+        <UserProfileContainer/>
     </div>
   )
 }

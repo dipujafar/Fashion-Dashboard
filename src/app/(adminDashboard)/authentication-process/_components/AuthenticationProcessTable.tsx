@@ -13,6 +13,19 @@ import DataTable from "@/utils/DataTable";
 import { CgUnblock } from "react-icons/cg";
 import { ArrowDownNarrowWide, Eye, Search } from "lucide-react";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
+
+
+const statusColor = (status: string)=>{
+    switch (status) {
+        case "Pending":
+            return "text-[#00B047]"
+        case "Approved":
+            return "text-[#1372C4]"
+        case "Rejected":
+            return "text-[#E12728]"
+    }
+}
 
 const userFilterOption = [
   {
@@ -49,10 +62,26 @@ const userFilterOption = [
   },
 ];
 
+const statusPendingFilterOption = [
+    {
+        text: "Pending",
+        value: "Pending", 
+    },
+    {
+        text: "Approved",
+        value: "Approved", 
+    },
+    {
+        text:"Rejected",
+        value:"Rejected"
+    }
+];
 
 
-const randomUserRole = ()=>{
-  return userFilterOption[Math.floor(Math.random() * userFilterOption.length)];
+
+
+const randomUserRole = (length: number)=>{
+  return Math.floor(Math.random() * length);
 }
 
 type TDataType = {
@@ -62,6 +91,7 @@ type TDataType = {
   email: string;
   date: string;
   userRole: string;
+  status: string
 };
 const data: TDataType[] = Array.from({ length: 18 }).map((data, inx) => ({
   key: inx,
@@ -69,7 +99,8 @@ const data: TDataType[] = Array.from({ length: 18 }).map((data, inx) => ({
   name: "Muskan Tanaz",
   email: "muskantanaz@gmail.com",
   date: "19 Jun 2025",
-  userRole: randomUserRole().value,
+  userRole: userFilterOption[randomUserRole(userFilterOption?.length)]?.value,
+  status : statusPendingFilterOption[randomUserRole(statusPendingFilterOption?.length)]?.value
 }));
 
 const confirmBlock: PopconfirmProps["onConfirm"] = (e) => {
@@ -77,7 +108,7 @@ const confirmBlock: PopconfirmProps["onConfirm"] = (e) => {
   message.success("Blocked the user");
 };
 
-const AccountDetailsTable = () => {
+const AuthenticationProcessTable = () => {
   const [open, setOpen] = useState(false);
 
   const columns: TableProps<TDataType>["columns"] = [
@@ -88,7 +119,7 @@ const AccountDetailsTable = () => {
       render: (text) => <p>#{text}</p>,
     },
     {
-      title: "User Name",
+      title: "Name",
       dataIndex: "name",
       align: "center",
     },
@@ -103,6 +134,15 @@ const AccountDetailsTable = () => {
       dataIndex: "userRole",
       align: "center",
       filters: userFilterOption,
+      filterIcon: () => <ArrowDownNarrowWide color="#fff" />,
+      onFilter: (value, record) => record.userRole.indexOf(value as string) === 0,
+    },
+    {
+      title: "Status",
+      dataIndex: "status",
+      align: "center",
+      render: (text) => <p className={cn(statusColor(text))}>{text}</p>,
+      filters: statusPendingFilterOption,
       filterIcon: () => <ArrowDownNarrowWide color="#fff" />,
       onFilter: (value, record) => record.userRole.indexOf(value as string) === 0,
     },
@@ -123,11 +163,11 @@ const AccountDetailsTable = () => {
             <Eye size={22} color="gray" onClick={() => setOpen(!open)} />{" "}
           </Link>
           <Popconfirm
-            title="Block the user"
-            description="Are you sure to block this user?"
+            title="Authentication Process"
+            description="what do you want?"
             onConfirm={confirmBlock}
-            okText="Yes"
-            cancelText="No"
+            okText="Approve"
+            cancelText="Reject"
           >
             <CgUnblock size={22} color="#CD0335" />
           </Popconfirm>
@@ -151,4 +191,4 @@ const AccountDetailsTable = () => {
   );
 };
 
-export default AccountDetailsTable;
+export default AuthenticationProcessTable;

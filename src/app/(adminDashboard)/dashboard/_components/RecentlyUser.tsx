@@ -6,6 +6,7 @@ import { CgUnblock } from "react-icons/cg";
 import { ArrowDownNarrowWide, Eye } from "lucide-react";
 import UserDetails from "@/components/(adminDashboard)/user/UserDetails";
 import { text } from "stream/consumers";
+import Link from "next/link";
 
 type TDataType = {
   key?: number;
@@ -16,7 +17,6 @@ type TDataType = {
   date: string;
   type: string;
 };
-
 
 const userFilterOption = [
   {
@@ -46,9 +46,8 @@ const userFilterOption = [
   {
     text: "Assisted Seller",
     value: "assisted_seller",
-  }
-]
-
+  },
+];
 
 const data: TDataType[] = Array.from({ length: 6 }).map((data, inx) => ({
   key: inx,
@@ -78,18 +77,6 @@ const RecentlyUser = () => {
       title: "User Name",
       dataIndex: "name",
       align: "center",
-      render: (text) => (
-        <div className="flex  justify-center items-center gap-x-1">
-          <Image
-            src={"/user_image1.png"}
-            alt="profile-picture"
-            width={40}
-            height={40}
-            className="size-10"
-          ></Image>
-          <p>{text}</p>
-        </div>
-      ),
     },
     {
       title: "Email",
@@ -103,7 +90,6 @@ const RecentlyUser = () => {
       filters: userFilterOption,
       onFilter: (value, record) => record.type.indexOf(value as string) === 0,
       filterIcon: () => <ArrowDownNarrowWide color="#fff" />,
-    
     },
 
     {
@@ -118,12 +104,13 @@ const RecentlyUser = () => {
       align: "center",
       render: () => (
         <div className="flex justify-center gap-2">
+          <Link href={"/account-details/2"}>
           <Eye
             size={22}
             color="#000"
-            onClick={() => setOpen(!open)}
             className="cursor-pointer"
           />
+          </Link>
           <Popconfirm
             title="Block the user"
             description="Are you sure to block this user?"
@@ -140,11 +127,7 @@ const RecentlyUser = () => {
 
   return (
     <div className="bg-[#F9F9FA] rounded-2xl">
-      <h1 className="  text-xl font-semibold text-text-color px-3 py-5">
-        Recent Users
-      </h1>
       <DataTable columns={columns} data={data}></DataTable>
-      <UserDetails open={open} setOpen={setOpen}></UserDetails>
     </div>
   );
 };

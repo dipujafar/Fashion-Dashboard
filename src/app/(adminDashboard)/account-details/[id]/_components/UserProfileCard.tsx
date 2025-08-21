@@ -1,9 +1,13 @@
 "use client";
 import { Card } from "@/components/ui/card";
+import { userTagColor } from "@/lib/userTagColor";
+import { cn } from "@/lib/utils";
+import { useSearchParams } from "next/navigation";
 
 export default function UserProfileCard() {
+    const userRole = useSearchParams().get('userRole');
   return (
-    <Card className="w-full max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+    <Card className="w-full bg-white shadow-lg rounded-lg overflow-hidden">
       {/* Header with background image and close button */}
       <div className="relative">
         <div
@@ -30,8 +34,8 @@ export default function UserProfileCard() {
           <h2 className="text-xl font-semibold text-gray-900 mb-2">
             Anna Suraiya
           </h2>
-          <span className="inline-block bg-blue-500 text-white text-xs font-medium px-3 py-1 rounded-full">
-            AMBASSADOR
+          <span style={{ backgroundColor: userTagColor(userRole as string) }} className={cn("inline-block  text-white text-xs font-medium px-3 py-1 rounded-full")}>
+            {userRole}
           </span>
         </div>
 
