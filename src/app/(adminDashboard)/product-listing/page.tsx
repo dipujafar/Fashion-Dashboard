@@ -1,7 +1,6 @@
 import React from 'react'
+import ProductListingTable from './_components/ProductListingTable'
 
 export default function ProductListing() {
-  return (
-    <div>ProductListing</div>
-  )
+  return <ProductListingTable />
 }

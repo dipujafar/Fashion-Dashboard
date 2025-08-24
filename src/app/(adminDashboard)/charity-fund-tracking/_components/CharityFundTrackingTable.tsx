@@ -1,17 +1,11 @@
 "use client";
-import {
-  Input,
-  message,
-  Popconfirm,
-  PopconfirmProps,
-  TableProps,
-} from "antd";
+import { Input, message, Popconfirm, PopconfirmProps, TableProps } from "antd";
 import { useState } from "react";
 import DataTable from "@/utils/DataTable";
 import { CgUnblock } from "react-icons/cg";
 import { ArrowDownNarrowWide, Eye, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
-import UserDetailsModal from "./UserDetailsModal";
+import Link from "next/link";
 
 const statusColor = (status: string) => {
   switch (status) {
@@ -81,32 +75,26 @@ const randomUserRole = (length: number) => {
 type TDataType = {
   key?: number;
   serial: number;
-  name: string;
-  email: string;
+  charityName: string;
+  received: string;
   date: string;
-  userRole: string;
-  status: string;
+  item: string;
+  directDonations: string;
+  salesContributions: string;
 };
 const data: TDataType[] = Array.from({ length: 18 }).map((data, inx) => ({
   key: inx,
+  item: "#A0111235",
   serial: inx + 1,
-  name: "Muskan Tanaz",
-  email: "muskantanaz@gmail.com",
+  charityName: "Save the Children",
+  received : "$8,000",
   date: "19 Jun 2025",
-  userRole: userFilterOption[randomUserRole(userFilterOption?.length)]?.value,
-  status:
-    statusPendingFilterOption[randomUserRole(statusPendingFilterOption?.length)]
-      ?.value,
+  directDonations: "$3,000",
+  salesContributions: "$5,000",
 }));
 
-const confirmBlock: PopconfirmProps["onConfirm"] = (e) => {
-  console.log(e);
-  message.success("Blocked the user");
-};
-
-const AuthenticationProcessTable = () => {
+const CharityFundTrackingTable = () => {
   const [open, setOpen] = useState(false);
-  const [userRole, setUserRole] = useState("");
 
   const columns: TableProps<TDataType>["columns"] = [
     {
@@ -116,61 +104,33 @@ const AuthenticationProcessTable = () => {
       render: (text) => <p>#{text}</p>,
     },
     {
-      title: "Name",
-      dataIndex: "name",
+      title: "Charity Name",
+      dataIndex: "charityName",
       align: "center",
     },
     {
-      title: "Email",
-      dataIndex: "email",
+      title: "Total Received ",
+      dataIndex: "received",
+      align: "center",
+    },
+    {
+      title: "Direct Donations",
+      dataIndex: "directDonations",
       align: "center",
     },
 
     {
-      title: "Account Type",
-      dataIndex: "userRole",
+      title: "Sales Contributions",
+      dataIndex: "salesContributions",
       align: "center",
-      filters: userFilterOption,
-      filterIcon: () => <ArrowDownNarrowWide color="#fff" />,
-      onFilter: (value, record) =>
-        record.userRole.indexOf(value as string) === 0,
     },
-    {
-      title: "Status",
-      dataIndex: "status",
-      align: "center",
-      render: (text) => <p className={cn(statusColor(text))}>{text}</p>,
-      filters: statusPendingFilterOption,
-      filterIcon: () => <ArrowDownNarrowWide color="#fff" />,
-      onFilter: (value, record) =>
-        record.status.indexOf(value as string) === 0,
-    },
+  
 
     {
       title: "Date",
       dataIndex: "date",
       align: "center",
-    },
-
-    {
-      title: "Action",
-      dataIndex: "action",
-      align: "center",
-      render: (text, record) => (
-        <div className="flex justify-center gap-2">
-          <Eye size={22} color="gray" onClick={() => {setOpen(!open); setUserRole(record?.userRole)} } />{" "}
-          <Popconfirm
-            title="Authentication Process"
-            description="what do you want?"
-            onConfirm={confirmBlock}
-            okText="Approve"
-            cancelText="Reject"
-          >
-            <CgUnblock size={22} color="#CD0335" />
-          </Popconfirm>
-        </div>
-      ),
-    },
+    }
   ];
 
   return (
@@ -179,14 +139,13 @@ const AuthenticationProcessTable = () => {
         <div></div>
         <Input
           className="!w-[180px] lg:!w-[250px] !py-2 placeholder:text-white !border-none !bg-[#d6d2d2]"
-          placeholder="Search Users..."
+          placeholder="Search Here..."
           prefix={<Search size={16} color="#000"></Search>}
         ></Input>
       </div>
       <DataTable columns={columns} data={data} pageSize={11}></DataTable>
-      <UserDetailsModal open={open} setOpen={setOpen} userRole={userRole}></UserDetailsModal>
     </div>
   );
 };
 
-export default AuthenticationProcessTable;
+export default CharityFundTrackingTable;

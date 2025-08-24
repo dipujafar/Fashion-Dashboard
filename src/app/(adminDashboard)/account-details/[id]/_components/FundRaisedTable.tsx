@@ -1,10 +1,9 @@
 "use client";
 import { TableProps } from "antd";
-import { useState } from "react";
 import DataTable from "@/utils/DataTable";
-import { ArrowDownNarrowWide, Eye } from "lucide-react";
-import { ReturnProductModal } from "@/components/shared/modal/ProductDetails";
+import { ArrowDownNarrowWide } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ProductDetailsModal } from "@/components/shared/modal/ProductDetails";
 
 const returnStatusColor = (status: string) => {
   switch (status) {
@@ -41,7 +40,7 @@ const statusFilterOption = [
   },
 ];
 
-const returnStatusOption = () => {
+const returnStatusOption = () => {ProductDetailsModal
   return Math.floor(Math.random() * 2);
 };
 
@@ -55,7 +54,6 @@ const data: TDataType[] = Array.from({ length: 16 }).map((data, inx) => ({
 }));
 
 const FundRaisedTable = () => {
-  const [open, setOpen] = useState(false);
 
   const columns: TableProps<TDataType>["columns"] = [
     {
@@ -97,7 +95,6 @@ const FundRaisedTable = () => {
   return (
     <div className="bg-[#F9F9FA] rounded-2xl">
       <DataTable columns={columns} data={data}></DataTable>
-      <ReturnProductModal open={open} setOpen={setOpen}></ReturnProductModal>
     </div>
   );
 };

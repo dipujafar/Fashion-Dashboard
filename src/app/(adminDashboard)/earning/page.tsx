@@ -1,14 +1,7 @@
-import React from "react";
-import EarningStatContainer from "./_components/EarningStatContainer";
-import EarningTable from "./_components/EarningTable";
+import EarningPageContainer from "./_components/EarningPageContainer";
 
 const EarningPage = () => {
-  return (
-    <div className="space-y-1 ">
-      <EarningStatContainer />
-      <EarningTable />
-    </div>
-  );
+  return <EarningPageContainer/>
 };
 
 export default EarningPage;

@@ -78,7 +78,6 @@ const confirmBlock: PopconfirmProps["onConfirm"] = (e) => {
 };
 
 const AccountDetailsTable = () => {
-  const [open, setOpen] = useState(false);
 
   const columns: TableProps<TDataType>["columns"] = [
     {
@@ -120,7 +119,7 @@ const AccountDetailsTable = () => {
       render: (text,record) => (
         <div className="flex justify-center gap-2">
           <Link href={`/account-details/1?userRole=${record?.userRole}`}>
-            <Eye size={22} color="gray" onClick={() => setOpen(!open)} />{" "}
+            <Eye size={22} color="gray" />{" "}
           </Link>
           <Popconfirm
             title="Block the user"

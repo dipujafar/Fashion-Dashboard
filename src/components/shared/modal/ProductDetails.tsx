@@ -27,7 +27,7 @@ const returnRequest = {
   ],
 };
 
-export function ReturnProductModal({
+export function ProductDetailsModal({
   open,
   setOpen,
 }: {

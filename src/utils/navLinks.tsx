@@ -3,8 +3,10 @@ import { GoPeople } from "react-icons/go";
 import Link from "next/link";
 import {
   Award,
+  Coins,
   IdCard,
   LogOut,
+  SquareChartGantt,
   Star,
   Wallet,
   WalletCards,
@@ -28,9 +30,14 @@ export const navLinks = [
     label: <Link href={"/authentication-process"}>Authentication Process</Link>,
   },
   {
-    key: "manage-specialist",
-    icon: <Award  size={18} />,
-    label: <Link href={"/manage-specialist"}>Manage Specialist</Link>,
+    key: "product-listing",
+    icon: <SquareChartGantt    size={18} />,
+    label: <Link href={"/product-listing"}>Product Listing</Link>,
+  },
+  {
+    key: "charity-fund-tracking",
+    icon: <Coins  size={18} />,
+    label: <Link href={"/charity-fund-tracking"}>Charity Fund Tracking</Link>,
   },
   {
     key: "earning",

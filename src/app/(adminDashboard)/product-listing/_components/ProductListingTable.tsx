@@ -1,17 +1,11 @@
 "use client";
-import {
-  Input,
-  message,
-  Popconfirm,
-  PopconfirmProps,
-  TableProps,
-} from "antd";
+import { Input, message, Popconfirm, PopconfirmProps, TableProps } from "antd";
 import { useState } from "react";
 import DataTable from "@/utils/DataTable";
 import { CgUnblock } from "react-icons/cg";
 import { ArrowDownNarrowWide, Eye, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
-import UserDetailsModal from "./UserDetailsModal";
+import Link from "next/link";
 
 const statusColor = (status: string) => {
   switch (status) {
@@ -86,13 +80,17 @@ type TDataType = {
   date: string;
   userRole: string;
   status: string;
+  item: string;
+  amount: number;
 };
 const data: TDataType[] = Array.from({ length: 18 }).map((data, inx) => ({
   key: inx,
+  item: "#A0111235",
   serial: inx + 1,
   name: "Muskan Tanaz",
   email: "muskantanaz@gmail.com",
   date: "19 Jun 2025",
+  amount: 100,
   userRole: userFilterOption[randomUserRole(userFilterOption?.length)]?.value,
   status:
     statusPendingFilterOption[randomUserRole(statusPendingFilterOption?.length)]
@@ -104,9 +102,8 @@ const confirmBlock: PopconfirmProps["onConfirm"] = (e) => {
   message.success("Blocked the user");
 };
 
-const AuthenticationProcessTable = () => {
+const ProductListingTable = () => {
   const [open, setOpen] = useState(false);
-  const [userRole, setUserRole] = useState("");
 
   const columns: TableProps<TDataType>["columns"] = [
     {
@@ -123,6 +120,11 @@ const AuthenticationProcessTable = () => {
     {
       title: "Email",
       dataIndex: "email",
+      align: "center",
+    },
+    {
+      title: "Item Number",
+      dataIndex: "item",
       align: "center",
     },
 
@@ -142,14 +144,19 @@ const AuthenticationProcessTable = () => {
       render: (text) => <p className={cn(statusColor(text))}>{text}</p>,
       filters: statusPendingFilterOption,
       filterIcon: () => <ArrowDownNarrowWide color="#fff" />,
-      onFilter: (value, record) =>
-        record.status.indexOf(value as string) === 0,
+      onFilter: (value, record) => record.status.indexOf(value as string) === 0,
     },
 
     {
       title: "Date",
       dataIndex: "date",
       align: "center",
+    },
+    {
+      title: "Amount",
+      dataIndex: "amount",
+      align: "center",
+      render: (text) => <p>${text}</p>,
     },
 
     {
@@ -158,16 +165,12 @@ const AuthenticationProcessTable = () => {
       align: "center",
       render: (text, record) => (
         <div className="flex justify-center gap-2">
-          <Eye size={22} color="gray" onClick={() => {setOpen(!open); setUserRole(record?.userRole)} } />{" "}
-          <Popconfirm
-            title="Authentication Process"
-            description="what do you want?"
-            onConfirm={confirmBlock}
-            okText="Approve"
-            cancelText="Reject"
+          <Link
+            href={`/product-listing/${record?.key}?userRole=${record?.userRole}`}
           >
-            <CgUnblock size={22} color="#CD0335" />
-          </Popconfirm>
+            {" "}
+            <Eye size={22} color="gray" onClick={() => setOpen(!open)} />
+          </Link>
         </div>
       ),
     },
@@ -179,14 +182,13 @@ const AuthenticationProcessTable = () => {
         <div></div>
         <Input
           className="!w-[180px] lg:!w-[250px] !py-2 placeholder:text-white !border-none !bg-[#d6d2d2]"
-          placeholder="Search Users..."
+          placeholder="Search Here..."
           prefix={<Search size={16} color="#000"></Search>}
         ></Input>
       </div>
       <DataTable columns={columns} data={data} pageSize={11}></DataTable>
-      <UserDetailsModal open={open} setOpen={setOpen} userRole={userRole}></UserDetailsModal>
     </div>
   );
 };
 
-export default AuthenticationProcessTable;
+export default ProductListingTable;

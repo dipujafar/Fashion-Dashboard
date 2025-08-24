@@ -25,6 +25,7 @@ type TNavbarProps = {
 
 const Navbar = ({ collapsed, setCollapsed }: TNavbarProps) => {
   const greeting = useGreeting();
+  console.log(greeting);
   return (
     <div className="flex items-center justify-between w-[97%] font-poppins text-text-color xl:px-8 px-4">
       {/* Header left side */}
@@ -39,7 +40,7 @@ const Navbar = ({ collapsed, setCollapsed }: TNavbarProps) => {
             <FaBars size={20} className="text-primary-gray" />
           )}
         </button>
-        <div className="flex flex-col ">
+        <div className="flex flex-col text-black">
           <h2 className="text-lg  font-medium">
             Dashboard
             <span className="block  text-sm font-normal">

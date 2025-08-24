@@ -1,4 +1,4 @@
-export const userFilterOption = [
+export const userRoleData = [
   {
     text: "Individual Seller",
     value: "individual_seller",
