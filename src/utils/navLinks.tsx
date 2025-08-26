@@ -4,6 +4,7 @@ import Link from "next/link";
 import {
   Award,
   Coins,
+  Flag,
   IdCard,
   LogOut,
   SquareChartGantt,
@@ -45,9 +46,14 @@ export const navLinks = [
     label: <Link href={"/earning"}>Earning</Link>,
   },
   {
-    key: "subscriptions",
+    key: "manage_subscription",
     icon: <WalletCards size={18} />,
-    label: <Link href={"/subscriptions"}>Subscriptions</Link>,
+    label: <Link href={"/manage-subscription"}>Manage Subscription</Link>,
+  },
+  {
+    key: "report-content",
+    icon: <Flag  size={18} />,
+    label: <Link href={"/report-content"}>Report Content</Link>,
   },
   {
     key: "manage-content-type",

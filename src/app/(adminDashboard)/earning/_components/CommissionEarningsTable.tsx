@@ -51,7 +51,7 @@ const CommissionEarningsTable = () => {
     },
 
     {
-      title: "Commission %",
+      title: "Commission (%)",
       dataIndex: "commission",
       align: "center",
     },

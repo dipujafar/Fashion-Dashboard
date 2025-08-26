@@ -1,11 +1,9 @@
 "use client";
-import { Input, message, Popconfirm, PopconfirmProps, TableProps } from "antd";
+import { Input,  TableProps } from "antd";
 import { useState } from "react";
 import DataTable from "@/utils/DataTable";
-import { CgUnblock } from "react-icons/cg";
 import { ArrowDownNarrowWide, Eye, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 
 const statusColor = (status: string) => {
   switch (status) {
@@ -17,41 +15,6 @@ const statusColor = (status: string) => {
       return "text-[#E12728]";
   }
 };
-
-const userFilterOption = [
-  {
-    text: "Individual Seller",
-    value: "Individual Seller",
-  },
-  {
-    text: "Charitable Organization",
-    value: "Charitable Organization",
-  },
-  {
-    text: "Charity Shop",
-    value: "Charity Shop",
-  },
-  {
-    text: "Celebrity",
-    value: "Celebrity",
-  },
-  {
-    text: "Eco-Friendly Shop",
-    value: "Eco-Friendly Shop",
-  },
-  {
-    text: "Ambassador",
-    value: "Ambassador",
-  },
-  {
-    text: "Professional Seller",
-    value: "Professional Seller",
-  },
-  {
-    text: "Assisted Seller",
-    value: "Assisted Seller",
-  },
-];
 
 const statusPendingFilterOption = [
   {
@@ -68,7 +31,7 @@ const statusPendingFilterOption = [
   },
 ];
 
-const randomUserRole = (length: number) => {
+const findRandomStatus = (length: number) => {
   return Math.floor(Math.random() * length);
 };
 
@@ -78,27 +41,25 @@ type TDataType = {
   name: string;
   email: string;
   date: string;
-  userRole: string;
   status: string;
   item: string;
-  amount: number;
+  reason: string;
 };
 const data: TDataType[] = Array.from({ length: 18 }).map((data, inx) => ({
   key: inx,
   item: "#A0111235",
   serial: inx + 1,
   name: "Muskan Tanaz",
-  email: "muskantanaz@gmail.com",
+  email: "fashion@gmail.com",
+  reason: "Inappropriate Content",
   date: "19 Jun 2025",
-  amount: 100,
-  userRole: userFilterOption[randomUserRole(userFilterOption?.length)]?.value,
+
   status:
-    statusPendingFilterOption[randomUserRole(statusPendingFilterOption?.length)]
+    statusPendingFilterOption[findRandomStatus(statusPendingFilterOption?.length)]
       ?.value,
 }));
 
-
-const ProductListingTable = () => {
+const ReportContentTable = () => {
   const [open, setOpen] = useState(false);
 
   const columns: TableProps<TDataType>["columns"] = [
@@ -109,7 +70,7 @@ const ProductListingTable = () => {
       render: (text) => <p>#{text}</p>,
     },
     {
-      title: "Name",
+      title: "Reported By",
       dataIndex: "name",
       align: "center",
     },
@@ -123,16 +84,12 @@ const ProductListingTable = () => {
       dataIndex: "item",
       align: "center",
     },
-
     {
-      title: "Account Type",
-      dataIndex: "userRole",
+      title: "Reason For Report",
+      dataIndex: "reason",
       align: "center",
-      filters: userFilterOption,
-      filterIcon: () => <ArrowDownNarrowWide color="#fff" />,
-      onFilter: (value, record) =>
-        record.userRole.indexOf(value as string) === 0,
     },
+
     {
       title: "Status",
       dataIndex: "status",
@@ -149,24 +106,12 @@ const ProductListingTable = () => {
       align: "center",
     },
     {
-      title: "Amount",
-      dataIndex: "amount",
-      align: "center",
-      render: (text) => <p>${text}</p>,
-    },
-
-    {
       title: "Action",
       dataIndex: "action",
       align: "center",
       render: (text, record) => (
         <div className="flex justify-center gap-2">
-          <Link
-            href={`/product-listing/${record?.key}?userRole=${record?.userRole}`}
-          >
-            {" "}
-            <Eye size={22} color="gray" onClick={() => setOpen(!open)} />
-          </Link>
+          <Eye size={22} color="gray" onClick={() => setOpen(!open)} />
         </div>
       ),
     },
@@ -187,4 +132,4 @@ const ProductListingTable = () => {
   );
 };
 
-export default ProductListingTable;
+export default ReportContentTable;
