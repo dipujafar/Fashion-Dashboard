@@ -20,12 +20,11 @@ interface PricingCardsProps {
 
 export function PackageCard({ packages, openEditModal}: PricingCardsProps) {
   const handleEdit = (packageId: string) => {
-    console.log("Edit package:", packageId);
     openEditModal(true);
   }
 
   const handleDelete = (packageId: string) => {
-    console.log("Delete package:", packageId);
+    // console.log("Delete package:", packageId);
   }
 
   return (

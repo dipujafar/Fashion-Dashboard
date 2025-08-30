@@ -87,7 +87,7 @@ const AddIssueCategoryModal = ({
   };
 
   const onError = (errors: any) => {
-    console.log("Form validation errors:", errors);
+    // console.log("Form validation errors:", errors);
   };
   return (
     <Modal

@@ -25,7 +25,6 @@ type TNavbarProps = {
 
 const Navbar = ({ collapsed, setCollapsed }: TNavbarProps) => {
   const greeting = useGreeting();
-  console.log(greeting);
   return (
     <div className="flex items-center justify-between w-[97%] font-poppins text-text-color xl:px-8 px-4">
       {/* Header left side */}

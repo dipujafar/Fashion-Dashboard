@@ -29,7 +29,7 @@ export default function ManageSubscriptionContainer() {
     const [open, setOpen] = useState(false);
   return (
     <div>
-      <Button onClick={() => setOpen(true)} className="w-full"> <PlusCircle size={24} className="mr-2" /> Add new subscription Plan</Button>
+      <Button onClick={() => setOpen(true)} className="w-full"> <PlusCircle size={24} className="mr-2" /> Add New Subscription Plan</Button>
       <div className="max-w-5xl mx-auto mt-20">
         <PackageCard packages={packagesData} openEditModal={setOpen} />
       </div>

@@ -18,7 +18,7 @@ const ResetPassword = () => {
           <Image
             src={logo}
             alt="logo"
-            className="size-32 mx-auto  rounded-lg"
+            className="mx-auto  rounded-lg mb-2"
           />
           <p className="text-black/80">SAVE NEW PASSWORD</p>
           <h2 className="text-black/90 text-xl font-semibold mb-4">

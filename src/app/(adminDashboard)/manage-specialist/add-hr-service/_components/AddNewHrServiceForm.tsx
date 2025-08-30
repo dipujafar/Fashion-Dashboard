@@ -136,7 +136,7 @@ export default function AddNewHrServiceForm() {
   }
 
   const onSubmit = (data: FormData) => {
-    console.log("Form submitted:", data)
+
     // Handle form submission here
     // You can use router.push() to navigate after successful submission
   }

@@ -12,14 +12,13 @@ type FieldType = {
 };
 
 const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("Failed:", errorInfo);
+  // console.log("Failed:", errorInfo);
 };
 
 const LoginForm = () => {
   const route = useRouter();
 
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-    console.log("Success:", values);
     route.push("/dashboard");
   };
 
@@ -68,10 +67,10 @@ const LoginForm = () => {
 
       <Button
         style={{
-          background: "linear-gradient(180deg, #4DB6AC 0.89%, #1A2935 100.89%)",
+          background: "linear-gradient(180deg, #000 0.89%, #323235 100.89%)",
           boxShadow: "7px 8px 4.7px 0px rgba(0, 0, 0, 0.08) inset",
         }}
-        className="group"
+        className="group hover:!text-white"
         htmlType="submit"
         size="large"
         block

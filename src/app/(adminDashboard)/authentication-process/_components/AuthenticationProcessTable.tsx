@@ -100,7 +100,6 @@ const data: TDataType[] = Array.from({ length: 18 }).map((data, inx) => ({
 }));
 
 const confirmBlock: PopconfirmProps["onConfirm"] = (e) => {
-  console.log(e);
   message.success("Blocked the user");
 };
 

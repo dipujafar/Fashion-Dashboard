@@ -18,7 +18,7 @@ const verifyEmail = () => {
           <Image
             src={logo}
             alt="logo"
-            className="size-32 mx-auto mb-6 rounded-lg"
+            className="mx-auto mb-6 rounded-lg"
           />
           <div className="mb-4  space-y-0.5">
             <p className="text-black/60 text-sm">ENTER VERIFICATION CODE</p>

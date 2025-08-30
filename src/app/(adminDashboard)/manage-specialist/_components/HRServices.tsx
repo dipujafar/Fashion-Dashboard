@@ -137,7 +137,6 @@ const specialists: Specialist[] = [
 ];
 
 const confirmBlock: PopconfirmProps["onConfirm"] = (e) => {
-  console.log(e);
   message.success("Successfully deleted.");
 };
 

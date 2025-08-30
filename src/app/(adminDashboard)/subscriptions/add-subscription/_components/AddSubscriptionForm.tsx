@@ -68,7 +68,7 @@ export default function AddSubscriptionForm() {
   });
 
   function onSubmit(values: FormValues) {
-    console.log(values);
+    // console.log(values);
     // Handle form submission here
   }
 

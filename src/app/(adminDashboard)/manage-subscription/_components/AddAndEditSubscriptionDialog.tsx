@@ -53,7 +53,6 @@ export function AddAndEditSubscriptionDialog({
   });
 
   const onSubmit = (data: SubscriptionFormValues) => {
-    console.log("Subscription data:", data);
     // Handle form submission here
     onOpenChange(false);
     form.reset();

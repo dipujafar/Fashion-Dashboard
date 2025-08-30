@@ -17,12 +17,12 @@ const LoginPage = () => {
           <Image
             src={logo}
             alt="logo"
-            className="size-32 mx-auto mb-6 rounded-lg"
+            className=" mx-auto mb-6 rounded-lg"
            
           />
           <div className="mb-4 ">
             <p className="text-sm text-black/60">WELCOME BACK</p>
-            <h2 className="text-xl font-bold text-black/80">Sign In to your Account</h2>
+            <h2 className="text-xl font-bold text-black/80">Sign In to your Account as Admin</h2>
           </div>
           <LoginForm />
         </div>

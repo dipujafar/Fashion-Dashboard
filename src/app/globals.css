@@ -10,13 +10,13 @@
   --color-main-bg: #F7F7F7;
   --color-section-bg: #fff;
   --color-menu-item: #fff;
-  --color-text-color: #fff;
+  --color-text-color: #000;
   --color-primary-green: #41ab5d;
   --color-primary-red: #b84d4d;
   --color-primary-white: #fff;
   --color-primary-deep-blue: #202947;
   --color-primary-white: #fff;
-  --color-primary-gray: #a0a7b7;
+  --color-primary-gray: #8A8A8A;
   --color-primary-light-gray: #F4F6FF66;
 }
 

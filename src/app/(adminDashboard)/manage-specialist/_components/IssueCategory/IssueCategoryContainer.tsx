@@ -8,7 +8,6 @@ import AddIssueCategoryModal from "./AddIssueCategoryModal";
 
 
   const confirmBlock: PopconfirmProps["onConfirm"] = (e) => {
-    console.log(e);
     message.success("Blocked the user");
   };
 

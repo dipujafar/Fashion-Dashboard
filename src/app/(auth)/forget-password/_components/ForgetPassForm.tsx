@@ -9,7 +9,7 @@ type FieldType = {
 };
 
 const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("Failed:", errorInfo);
+  // console.log("Failed:", errorInfo);
 };
 
 const ForgetPassForm = () => {
@@ -17,8 +17,6 @@ const ForgetPassForm = () => {
 
   //handle password change
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-    console.log("Success:", values);
-
     if (values.email) {
       route.push("/verify-email");
     }
@@ -47,7 +45,7 @@ const ForgetPassForm = () => {
         <Input size="large" placeholder="Email" />
       </Form.Item>
 
-      <Button style={{background: "linear-gradient(180deg, #4DB6AC 0.89%, #1A2935 100.89%)", boxShadow: "7px 8px 4.7px 0px rgba(0, 0, 0, 0.08) inset"}} className="group" htmlType="submit" size="large" block >
+      <Button style={{background: "linear-gradient(180deg, #000 0.89%, #323235 100.89%)", boxShadow: "7px 8px 4.7px 0px rgba(0, 0, 0, 0.08) inset"}} className="group hover:!text-white" htmlType="submit" size="large" block >
         Send OTP
         <AnimatedArrow size={20} />
       </Button>

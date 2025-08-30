@@ -25,7 +25,7 @@ export default function ProductDescription() {
           <li className="flex items-start gap-2">
             <span className="text-foreground mt-1">•</span>
             <div>
-              Material: Made with a
+              <strong className="text-foreground">Material:</strong> Made with a
               high-quality cotton blend, this sweatshirt provides a perfect
               balance of softness and breathability. It's durable yet
               comfortable, ensuring you stay cozy all day.
